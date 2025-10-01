@@ -1,0 +1,61 @@
+{
+  "name": "InstagramProfile",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "Instagram username"
+    },
+    "profile_name": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "followers": {
+      "type": "number",
+      "description": "Number of followers"
+    },
+    "following": {
+      "type": "number",
+      "description": "Number of accounts following"
+    },
+    "posts_count": {
+      "type": "number",
+      "description": "Total number of posts"
+    },
+    "total_views": {
+      "type": "number",
+      "description": "Total views across all posts"
+    },
+    "profile_image": {
+      "type": "string",
+      "description": "Profile image URL"
+    },
+    "bio": {
+      "type": "string",
+      "description": "Profile bio"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "influencer",
+        "brand",
+        "creator",
+        "business",
+        "celebrity"
+      ],
+      "description": "Profile category"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is verified account"
+    }
+  },
+  "required": [
+    "username",
+    "profile_name",
+    "followers",
+    "following",
+    "posts_count"
+  ]
+}
