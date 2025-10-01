@@ -1,0 +1,61 @@
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { LayoutGrid, List, ArrowUpDown, RefreshCw } from "lucide-react";
+
+export default function FilterControls({ 
+  viewMode, 
+  setViewMode, 
+  sortBy, 
+  setSortBy,
+  onRefresh,
+  isRefreshing 
+}) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+          <Button
+            variant={viewMode === 'grid' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('grid')}
+            className={viewMode === 'grid' ? 'bg-white shadow-sm' : ''}
+          >
+            <LayoutGrid className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className={viewMode === 'table' ? 'bg-white shadow-sm' : ''}
+          >
+            <List className="w-4 h-4" />
+          </Button>
+        </div>
+
+        <Select value={sortBy} onValueChange={setSortBy}>
+          <SelectTrigger className="w-48">
+            <ArrowUpDown className="w-4 h-4 mr-2" />
+            <SelectValue placeholder="Sort by" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="followers">Most Followers</SelectItem>
+            <SelectItem value="engagement">Best Engagement</SelectItem>
+            <SelectItem value="posts">Most Posts</SelectItem>
+            <SelectItem value="views">Most Views</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Button
+        variant="outline"
+        onClick={onRefresh}
+        disabled={isRefreshing}
+        className="gap-2"
+      >
+        <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+        {isRefreshing ? 'Updating...' : 'Refresh Data'}
+      </Button>
+    </div>
+  );
+}
